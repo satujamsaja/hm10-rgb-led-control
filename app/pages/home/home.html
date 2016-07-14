@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>HM10</ion-title>
+    <ion-buttons end>
+      <button (click)="scanBle()" primary outline>Scan Bluetooth</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let ble of bles" (click)="connectBle(ble)">
+      {{ ble.name }} - {{ ble.id }}
+      <ion-icon name="bluetooth" item-right primary></ion-icon>
+    </button>
+  </ion-list>
+</ion-content>

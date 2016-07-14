@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ ble.name }}</ion-title>
+    <ion-buttons end>
+      <button (click)="disconnect()" primary outline>Disconnect</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>{{ ble.name }}</ion-list-header>
+    <ion-item>ID: {{ ble.id }}</ion-item>
+    <ion-item>RSSI: {{ ble.rssi }}</ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header light>LED Control</ion-list-header>
+    <ion-item>
+      <ion-label>LED 1</ion-label>
+      <ion-toggle [(ngModel)]="led0" checked="false" (ngModelChange)="turnLed(led0,0)"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>LED 2</ion-label>
+      <ion-toggle [(ngModel)]="led1" checked="false" (ngModelChange)="turnLed(led1,1)"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>LED 3</ion-label>
+      <ion-toggle [(ngModel)]="led2" checked="false" (ngModelChange)="turnLed(led2,2)"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header light>RGB Control <ion-badge item-right danger>{{red}}</ion-badge><ion-badge item-right secondary>{{green}}</ion-badge><ion-badge item-right primary>{{blue}}</ion-badge></ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="255" pin="true" [(ngModel)]="red" (ngModelChange)="colorLed(red,'r')" danger>
+        <ion-icon range-left small name="contrast" danger></ion-icon>
+        <ion-icon range-right name="contrast" danger></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-range min="0" max="255" pin="true" [(ngModel)]="green" (ngModelChange)="colorLed(green,'g')" secondary>
+        <ion-icon range-left small name="contrast" secondary></ion-icon>
+        <ion-icon range-right name="contrast" secondary></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-range min="0" max="255" pin="true" [(ngModel)]="blue" (ngModelChange)="colorLed(blue,'b')" primary>
+        <ion-icon range-left small name="contrast" primary></ion-icon>
+        <ion-icon range-right name="contrast" primary></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  <div padding>
+   <button (click)="sendUpdate()" block>Send</button>
+  </div>
+</ion-content>
